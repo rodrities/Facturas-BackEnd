@@ -21,7 +21,8 @@ public class Factura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date date;
+    private Date fechaEmision;
+    private Date fechaVencimiento;
     private Double total;
     private String status = "Ingresada";
 
