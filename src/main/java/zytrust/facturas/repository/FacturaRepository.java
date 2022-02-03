@@ -5,5 +5,5 @@ import zytrust.facturas.model.Factura;
 
 @Repository
 public interface FacturaRepository extends GenericRepository<Factura, String> {
-    
+
 }
