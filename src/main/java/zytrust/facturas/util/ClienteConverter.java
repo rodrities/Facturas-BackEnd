@@ -3,9 +3,10 @@ package zytrust.facturas.util;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import zytrust.facturas.dto.FacturaRequest;
-import zytrust.facturas.dto.FacturaResponse;
-import zytrust.facturas.model.Factura;
+import zytrust.facturas.dto.ClienteRequest;
+import zytrust.facturas.dto.ClienteResponse;
+
+import zytrust.facturas.model.Cliente;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,15 +16,15 @@ public class ClienteConverter {
     @Autowired
     private ModelMapper modelMapper;
 
-    public Factura convertClienteToEntity(ClienteRequest request){
-        return modelMapper.map(request, Factura.class);
+    public Cliente convertClienteToEntity(ClienteRequest request){
+        return modelMapper.map(request, Cliente.class);
     }
 
-    public FacturaResponse convertFacturaToResponse(Factura factura){
-        return modelMapper.map(factura, FacturaResponse.class);
+    public ClienteResponse convertClienteToResponse(Cliente cliente){
+        return modelMapper.map(cliente, ClienteResponse.class);
     }
 
-    public List<FacturaResponse> convertFacturaToResponse(List<Factura> facturas) {
-        return facturas.stream().map(factura -> modelMapper.map(factura, FacturaResponse.class)).collect(Collectors.toList());
+    public List<ClienteResponse> convertClienteToResponse(List<Cliente> clientes) {
+        return clientes.stream().map(cliente -> modelMapper.map(cliente, ClienteResponse.class)).collect(Collectors.toList());
     }
 }
