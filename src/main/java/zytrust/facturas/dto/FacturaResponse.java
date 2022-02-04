@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class FacturaResponse {
 
-    private String id;
+    private Long id;
     private Date fechaEmision;
     private Date fechaVencimiento;
     private Double total;
@@ -22,5 +22,5 @@ public class FacturaResponse {
 
     private Double impuesto;
 
-    private String status = "Ingresada";
+    private String status;
 }

@@ -1,7 +1,10 @@
 package zytrust.facturas.dto;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 
+@Data
 public class ClienteRequest {
     private String nombre;
 

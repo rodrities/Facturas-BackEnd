@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "FAC_CLIENTES")
+@Table(name = "cliente")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CLIE_ID")
-    private String id;
+    private Long id;
     @Column(name = "CLIE_NOMBRE")
     private String nombre;
     @Column(name = "CLIE_APELLIDO")
@@ -35,5 +35,6 @@ public class Cliente {
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@Column(name = "CLIE_FACTURAS")
     private List<Factura> facturas;
 }

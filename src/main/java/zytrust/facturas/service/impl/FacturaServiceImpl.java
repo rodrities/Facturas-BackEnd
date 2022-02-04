@@ -8,13 +8,13 @@ import zytrust.facturas.repository.GenericRepository;
 import zytrust.facturas.service.FacturaService;
 
 @Service
-public class FacturaServiceImpl extends CrudServiceImpl<Factura, String> implements FacturaService {
+public class FacturaServiceImpl extends CrudServiceImpl<Factura, Long> implements FacturaService {
 
     @Autowired
     private FacturaRepository facturaRepository;
 
     @Override
-    protected GenericRepository<Factura, String> getRepository() {
+    protected GenericRepository<Factura, Long> getRepository() {
         return facturaRepository;
     }
 }

@@ -1,10 +1,13 @@
 package zytrust.facturas.dto;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 
+@Data
 public class ClienteResponse {
 
-    private String id;
+    private Long id;
 
     private String nombre;
 

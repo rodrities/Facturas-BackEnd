@@ -21,5 +21,4 @@ public class FacturaRequest {
 
     private Double impuesto;
 
-    private String status = "Ingresada";
 }

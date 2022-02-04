@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "FAC_PRODUCTOS")
+@Table(name = "productos")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,7 +18,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PROD_ID")
-    private String id;
+    private Long id;
 
     @Column(name = "PROD_NOMBRE")
     private String nombre;

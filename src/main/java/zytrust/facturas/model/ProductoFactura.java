@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "FAC_PROD_FACTURA")
+@Table(name = "prod_factura")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,11 +17,11 @@ public class ProductoFactura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PFAC_ID")
-    private String id;
+    private Long id;
 
     private Integer cantidad;
 
-    @OneToOne(fetch = FetchType.LAZY,
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Factura factura;
 

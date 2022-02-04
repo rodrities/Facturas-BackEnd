@@ -6,18 +6,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zytrust.facturas.dto.ClienteRequest;
 import zytrust.facturas.dto.ClienteResponse;
-import zytrust.facturas.dto.FacturaRequest;
-import zytrust.facturas.dto.FacturaResponse;
 import zytrust.facturas.service.ClienteService;
-import zytrust.facturas.service.FacturaService;
 import zytrust.facturas.util.ClienteConverter;
-import zytrust.facturas.util.FacturaConverter;
+
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/facturas")
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
     @Autowired

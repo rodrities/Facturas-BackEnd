@@ -2,6 +2,7 @@ package zytrust.facturas.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,17 +15,18 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "FAC_FACTURAS")
+@Table(name = "factura")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Factura {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FAC_ID")
-    private String id;
+    private Long id;
 
     @Column(name = "FAC_FEC_EMIS")
     private Date fechaEmision;
@@ -40,11 +42,13 @@ public class Factura {
     private String status = "Ingresada";
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FAC_CLIE_ID", nullable = false)
+    @JoinColumn(name = "cliente_id", nullable = false)
     @JsonIgnore
-    private Cliente cliente;
+    Cliente cliente;
+
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<ProductoFactura> productos;
+
 }
