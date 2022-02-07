@@ -10,13 +10,13 @@ import zytrust.facturas.repository.GenericRepository;
 import zytrust.facturas.service.ClienteService;
 
 @Service
-public class ClienteServiceImpl extends CrudServiceImpl<Cliente, Long> implements ClienteService {
+public class ClienteServiceImpl extends CrudServiceImpl<Cliente, String> implements ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
 
     @Override
-    protected GenericRepository<Cliente, Long> getRepository() {
+    protected GenericRepository<Cliente, String> getRepository() {
         return clienteRepository;
     }
 }

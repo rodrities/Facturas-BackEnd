@@ -11,12 +11,12 @@ import zytrust.facturas.service.FacturaService;
 import zytrust.facturas.service.ProductoService;
 
 @Service
-public class ProductoServiceImpl extends CrudServiceImpl<Producto, Long> implements ProductoService {
+public class ProductoServiceImpl extends CrudServiceImpl<Producto, String> implements ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
     @Override
-    protected GenericRepository<Producto, Long> getRepository() {
+    protected GenericRepository<Producto, String> getRepository() {
         return productoRepository;
     }
 }

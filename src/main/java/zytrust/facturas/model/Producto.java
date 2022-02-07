@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,17 +16,22 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Producto {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "PROD_ID")
-    private Long id;
+    private String id;
 
     @Column(name = "PROD_NOMBRE")
     private String nombre;
+
     @Column(name = "PROD_STOCK")
     private Integer stock;
+
     @Column(name ="PROD_PRECIO")
     private BigDecimal precio;
+
     @Column(name = "PROD_DESCRIPCION")
     private String descripcion;
 

@@ -5,5 +5,5 @@ import zytrust.facturas.model.Factura;
 import zytrust.facturas.model.Producto;
 
 @Repository
-public interface ProductoRepository  extends GenericRepository<Producto, Long>{
+public interface ProductoRepository  extends GenericRepository<Producto, String>{
 }

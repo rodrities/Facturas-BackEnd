@@ -8,13 +8,18 @@ import zytrust.facturas.repository.GenericRepository;
 import zytrust.facturas.service.FacturaService;
 
 @Service
-public class FacturaServiceImpl extends CrudServiceImpl<Factura, Long> implements FacturaService {
+public class FacturaServiceImpl extends CrudServiceImpl<Factura, String> implements FacturaService {
 
     @Autowired
     private FacturaRepository facturaRepository;
 
     @Override
-    protected GenericRepository<Factura, Long> getRepository() {
+    protected GenericRepository<Factura, String> getRepository() {
         return facturaRepository;
+    }
+
+    @Override
+    public Factura cambiarStatus(Factura t) throws Exception {
+        return facturaRepository.save(t);
     }
 }

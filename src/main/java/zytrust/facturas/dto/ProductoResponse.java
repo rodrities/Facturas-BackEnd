@@ -7,8 +7,7 @@ import java.math.BigDecimal;
 @Data
 public class ProductoResponse {
 
-    private Long id;
-
+    private String id;
 
     private String nombre;
 

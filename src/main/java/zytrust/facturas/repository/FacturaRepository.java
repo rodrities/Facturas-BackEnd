@@ -4,6 +4,6 @@ import org.springframework.stereotype.Repository;
 import zytrust.facturas.model.Factura;
 
 @Repository
-public interface FacturaRepository extends GenericRepository<Factura, Long> {
+public interface FacturaRepository extends GenericRepository<Factura, String> {
 
 }

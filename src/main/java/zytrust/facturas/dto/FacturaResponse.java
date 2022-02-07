@@ -4,23 +4,24 @@ import lombok.Data;
 import zytrust.facturas.model.Cliente;
 import zytrust.facturas.model.ProductoFactura;
 
-import javax.persistence.Column;
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import java.util.List;
 
 @Data
 public class FacturaResponse {
 
-    private Long id;
-    private Date fechaEmision;
-    private Date fechaVencimiento;
-    private Double total;
+    private String id;
+    private LocalDate fechaEmision;
+    private LocalDate fechaVencimiento;
+    private BigDecimal total;
     private List<ProductoFactura> productos;
-    private Cliente cliente;
+    //private Cliente cliente;
 
-    private Double subtotal;
+    private BigDecimal subtotal;
 
-    private Double impuesto;
+    private BigDecimal impuesto;
 
     private String status;
 }
