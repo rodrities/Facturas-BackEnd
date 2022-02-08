@@ -15,6 +15,7 @@ package zytrust.facturas.model;
  * @author Rodrigo Ticona
  * @version 1.0.0, 04/02/2022
  */
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -66,5 +67,6 @@ public class Cliente {
     @OneToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Column(name = "CLIE_FACTURAS")
+    @JsonIgnore
     private List<Factura> facturas;
 }

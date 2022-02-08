@@ -59,32 +59,41 @@ public class FacturaController {
 
     /**
      * @return      el objeto factura con el status Http200
+     * @throws Exception Excepción durante el proceso de busqueda
      * */
     @GetMapping
     public ResponseEntity<List<FacturaResponse>> getAll() throws Exception{
         var facturas = facturaService.getAll();
-        return new ResponseEntity<>(converter.convertFacturaToResponse(facturas), HttpStatus.OK);
+        return new ResponseEntity<>(
+                converter.convertFacturaToResponse(facturas), HttpStatus.OK);
     }
 
     /**
      * @param id facturaId que se extrae del path
      * @return      el objeto factura con el status Http200
+     * @throws Exception Excepción durante el proceso de busqueda
      * */
     @GetMapping("/{id}")
-    public ResponseEntity<FacturaDetailsResponse> getById(@Valid @PathVariable(name = "id") String id) throws Exception{
+    public ResponseEntity<FacturaDetailsResponse> getById(
+            @Valid @PathVariable(name = "id") String id) throws Exception{
         Factura factura;
-        factura= facturaService.getById(id).orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado"));
-        return new ResponseEntity<>(converter.convertFacturaDetailsToResponse(factura), HttpStatus.OK);
+        factura= facturaService.getById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Cliente no encontrado"));
+        return new ResponseEntity<>(
+                converter.convertFacturaDetailsToResponse(
+                        factura), HttpStatus.OK);
     }
 
     /**@param  request  un obejto json con los parametros de una factura
     * @param   clienteId que se extrae del path
     * @return      el objeto factura con el status Http200
+     *@throws Exception Excepción durante el proceso de creacion
     * */
     @PostMapping("/cliente/{clienteId}")
-    public ResponseEntity<FacturaResponse> crearProducto(@Valid @RequestBody FacturaRequest request,
-                                                             @Valid @PathVariable(name = "clienteId")
-                                                                     String clienteId) throws Exception{
+    public ResponseEntity<FacturaResponse> crearProducto(
+            @Valid @RequestBody FacturaRequest request,
+            @Valid @PathVariable(name = "clienteId")
+                    String clienteId) throws Exception{
 
         Cliente cliente; // se crea el cliente de la factura
         var tem = new Factura();  // se crea auxiliar de la factura
@@ -97,8 +106,10 @@ public class FacturaController {
 
         for (ProductoFactura producto: request.getProductos()) {  // bucle para agregar todos los productos
             // Buscar todos los productos requeridos
-            var productoTem = (productoService.getById(producto.getId()).orElseThrow(
-                    () -> new ResourceNotFoundException("Producto no encontrado")));
+            var productoTem = (
+                    productoService.getById(producto.getId()).orElseThrow(
+                    () -> new ResourceNotFoundException(
+                            "Producto no encontrado")));
 
             var prodFacTem = new ProductoFactura(); // Crear un nuevo ProductoFactura
 
@@ -110,7 +121,8 @@ public class FacturaController {
             productoFacturaService.create(prodFacTem);
             // Agregar el precio del producto al subtotal de la factura
             tem.setSubtotal(tem.getSubtotal()
-                    .add(productoTem.getPrecio().multiply(new BigDecimal(prodFacTem.getCantidad()))));
+                    .add(productoTem.getPrecio().multiply(
+                            new BigDecimal(prodFacTem.getCantidad()))));
         }
 
         // Se agregan los datos que no son requeridos ingresar por el cliente
@@ -124,9 +136,16 @@ public class FacturaController {
 
         var factura = facturaService.create(tem); // se crea la factura
 
-        return new ResponseEntity<>(converter.convertFacturaToResponse(factura), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(
+                converter.convertFacturaToResponse(
+                        factura), HttpStatus.ACCEPTED);
     }
 
+    /**@param  id  El identificador de la fatura a editar
+     * @param  idProducto  El identificador del producto a agregar
+     * @return      el objeto factura con el status Http200
+     * @throws Exception Excepción durante el proceso de actualizacion
+     * */
     @PutMapping("/{id}/producto/{idProducto}")
     public ResponseEntity<FacturaResponse> agregarProducto(
             @Valid @PathVariable(name = "id") String id,
@@ -136,7 +155,9 @@ public class FacturaController {
         var factura = facturaService.getById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Factura no encontrada"));
         List<ProductoFactura> productos;
+        boolean productoAgregado;
 
+        productoAgregado = false;
         productos = factura.getProductos();
 
         for (ProductoFactura producto: productos) {
@@ -144,32 +165,39 @@ public class FacturaController {
             if (producto.getProducto().getId().equals(idProducto)) {
 
                 producto.setCantidad(producto.getCantidad() + 1);
-                break;
+                productoAgregado = true;
             }
+        }
+
+        if(!productoAgregado) {
 
             var temProdFac = new ProductoFactura();
-            var temProd = productoService.getById(idProducto).orElseThrow(
-                    () -> new ResourceNotFoundException("Producto no encontrada"));
+            var temProd = productoService.getById(
+                    idProducto).orElseThrow(
+                    () -> new ResourceNotFoundException(
+                            "Producto no encontrada"));
 
             temProdFac.setFactura(factura);
             temProdFac.setCantidad(1);
             temProdFac.setProducto(temProd);
 
             productos.add(temProdFac);
-
         }
 
         factura.setProductos(productos);
 
-        facturaService.update(factura);
+        facturaService.actualizarTotales(factura);
 
-        return new ResponseEntity<>(converter.convertFacturaToResponse(factura), HttpStatus.OK);
+        return new ResponseEntity<>(
+                converter.convertFacturaToResponse(factura), HttpStatus.OK);
     }
+
 
 
     /** @param   id     el identificador de la facrtura
      * @param  status el nuevo status de la factura
      * @return        el objeto factura con el status Http200
+     * @throws Exception Excepción durante el proceso de actualizcion
      * */
     @PutMapping("/{id}/status/{status}")
     public ResponseEntity<FacturaResponse> cambiarStatus(
@@ -190,7 +218,8 @@ public class FacturaController {
 
         facturaService.update(factura);
 
-        return new ResponseEntity<>(converter.convertFacturaToResponse(factura), HttpStatus.OK);
+        return new ResponseEntity<>(
+                converter.convertFacturaToResponse(factura), HttpStatus.OK);
     }
 
 }

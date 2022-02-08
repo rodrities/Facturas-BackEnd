@@ -25,22 +25,24 @@ import java.util.List;
 @Data
 public class FacturaResponse {
 
-    /* Atributos de respuesta al buscar una factura*/
+    /** Identificador de Factura de respuesta*/
     private String id;
 
+    /** Fecha de Emision de Factura de respuesta*/
     private LocalDate fechaEmision;
 
+    /** Fecha de Vencimiento de Factura de respuesta*/
     private LocalDate fechaVencimiento;
 
+    /** Total de Factura de respuesta*/
     private BigDecimal total;
 
-    //private List<ProductoFactura> productos;
-
-    //private Cliente cliente;
-
+    /** Subtotal de Factura de respuesta*/
     private BigDecimal subtotal;
 
+    /** Impuesto de Factura de respuesta*/
     private BigDecimal impuesto;
 
+    /** Status de Factura de respuesta*/
     private String status;
 }

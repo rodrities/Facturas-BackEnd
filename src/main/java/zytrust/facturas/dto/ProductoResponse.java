@@ -23,14 +23,18 @@ import java.math.BigDecimal;
 @Data
 public class ProductoResponse {
 
-    /* Atributos de respuesta al buscar un producto*/
+    /** Identificador de respuesta al buscar un producto*/
     private String id;
 
+    /** Nombre de respuesta al buscar un producto*/
     private String nombre;
 
+    /** Stock de respuesta al buscar un producto*/
     private Integer stock;
 
+    /** Precio de respuesta al buscar un producto*/
     private BigDecimal precio;
 
+    /** Descripcion de respuesta al buscar un producto*/
     private String descripcion;
 }

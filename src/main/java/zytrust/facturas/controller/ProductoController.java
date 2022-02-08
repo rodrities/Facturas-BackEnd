@@ -10,7 +10,7 @@ package zytrust.facturas.controller;
  * expresa de ZyTrust SA.
  */
 /**
- * Esta clase representa el controllador Producto que interactua con el cliente .
+ * Esta clase representa el controllador Producto que interactua con el cliente.
  * @author Rodrigo Ticona
  * @version 1.0.0, 04/02/2022
  */
@@ -42,19 +42,23 @@ public class ProductoController {
     @GetMapping
     public ResponseEntity<List<ProductoResponse>> getAll() throws Exception{
         var productos = productoService.getAll();
-        return new ResponseEntity<>(converter.convertProductoToResponse(productos), HttpStatus.OK);
+        return new ResponseEntity<>(
+                converter.convertProductoToResponse(productos), HttpStatus.OK);
     }
 
     /**
-     * @params  request el objeto producto en json que se convertira en el objeto a crear
+     * @params  request el objeto producto en json que se convertira
+     *          en el objeto a crear
      * @return      el objeto producto con el status Http200
      */
     @PostMapping
-    public ResponseEntity<ProductoResponse> createProducto(@Valid @RequestBody ProductoRequest request
-    ) throws Exception{
+    public ResponseEntity<ProductoResponse> createProducto(
+            @Valid @RequestBody ProductoRequest request) throws Exception{
 
         var tem = converter.convertProductoToEntity(request);
         var producto = productoService.create(tem);
-        return new ResponseEntity<>(converter.convertProductoToResponse(producto), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(
+                converter.convertProductoToResponse(
+                        producto), HttpStatus.ACCEPTED);
     }
 }

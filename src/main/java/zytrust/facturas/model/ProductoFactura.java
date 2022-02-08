@@ -32,21 +32,25 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class ProductoFactura {
 
+    /** Identificador del productoFactura*/
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "PFAC_ID")
-    private String id;  // Identificador del productoFactura
+    private String id;
 
+    /** Cantidad del productoFactura*/
     @Column(name = "PFAC_CANTIDAD")
-    private Integer cantidad; // Cantidad del productoFactura
+    private Integer cantidad;
 
+    /** Factura del productoFactura*/
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
-    private Factura factura; // Factura del productoFactura
+    private Factura factura;
 
+    /** Producto del productoFactura*/
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Producto producto; // Producto del productoFactura
+    private Producto producto;
 }

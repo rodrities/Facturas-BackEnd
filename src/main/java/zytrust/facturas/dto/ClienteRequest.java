@@ -19,16 +19,21 @@ import lombok.Data;
 
 @Data
 public class ClienteRequest {
-    /** Atributos requeridos para crear un cliente */
+    /** Nombre requerido para la creacion de un Cliente */
     private String nombre;
 
+    /** Apellido requerido para la creacion de un Cliente */
     private String apellido;
 
+    /** Direccion requerido para la creacion de un Cliente */
     private String direccion;
 
+    /** Telefono requerido para la creacion de un Cliente */
     private String telefono;
 
+    /** Tipo de documento requerido para la creacion de un Cliente */
     private String tipoDocumento;
 
+    /** Numero de documento requerido para la creacion de un Cliente */
     private String numDocumento;
 }

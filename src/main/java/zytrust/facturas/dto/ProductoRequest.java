@@ -23,12 +23,15 @@ import java.math.BigDecimal;
 @Data
 public class ProductoRequest {
 
-    /* Atributos requeridos para crear un producto */
+    /** Nombre requerido para crear un producto */
     private String nombre;
 
+    /** Stock requerido para crear un producto */
     private Integer stock;
 
+    /** Precio requerido para crear un producto */
     private BigDecimal precio;
 
+    /** Descripcion requerido para crear un producto */
     private String descripcion;
 }

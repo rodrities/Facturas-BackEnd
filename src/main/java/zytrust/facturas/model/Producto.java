@@ -31,22 +31,27 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Producto {
 
+    /** Identificador del producto */
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "PROD_ID")
-    private String id; // Identificador del producto
+    private String id;
 
+    /** Nombre del producto */
     @Column(name = "PROD_NOMBRE")
-    private String nombre; // Nombre del producto
+    private String nombre;
 
+    /** Stock del producto*/
     @Column(name = "PROD_STOCK")
-    private Integer stock; // Stock del producto
+    private Integer stock;
 
+    /** Precio del producto */
     @Column(name ="PROD_PRECIO")
-    private BigDecimal precio;  // Precio del producto
+    private BigDecimal precio;
 
+    /** Descripcion del producto */
     @Column(name = "PROD_DESCRIPCION")
-    private String descripcion; // Descripcion del producto
+    private String descripcion;
 
 }

@@ -18,13 +18,37 @@ import java.util.Optional;
 
 public interface CrudService <T, ID> {
 
+    /**
+     * @param  t   El objeto de tipo T que se creará
+     * @return      el repositry con la funcion save, para guardar el objeto
+     * @throws Exception Excepción durante el proceso de creacion
+     */
     T create (T t) throws Exception;
 
+    /**
+     * @param  t   El objeto de tipo T que se actualizará
+     * @return      el repositry con la funcion save, para guardar el objeto
+     * @throws Exception Excepción durante el proceso de actualizacion
+     */
     T update (T t) throws Exception;
 
+    /**
+     * @return      el repositry con la funcion de encontrar todos los objetos
+     * @throws Exception Excepción durante el proceso de busqueda
+     */
     List<T> getAll() throws Exception;
 
+    /**
+     * @param id  el identificador del objeto
+     * @return      el repositry con la funcion de encontrar por id
+     * @throws Exception Excepción durante el proceso de busqueda por id
+     */
     Optional<T> getById(ID id) throws Exception;
 
+    /**
+     * @param id   El identificador del obajeto que se eliminará
+     * @return      el repositry con la funcion del eliminar por id
+     * @throws Exception Excepción durante el proceso de eliminacion
+     */
     void delete(ID id) throws Exception;
 }

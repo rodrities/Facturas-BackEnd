@@ -18,12 +18,16 @@ package zytrust.facturas.dto;
 
 import lombok.Data;
 import zytrust.facturas.model.ProductoFactura;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
 public class FacturaRequest {
 
-    // Atributos requeridos para crear una factura
+    /** Lista de produtos requeridos para la creacion de factura*/
     private List<ProductoFactura> productos;
 
+    /** Fecha de vencimiento requerida para la creacion de factura*/
+    private LocalDate fechaVencimiento;
 }

@@ -30,14 +30,26 @@ public class ClienteConverter {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * @param request El objeto cliente de tipo Request
+     * @return El cliente como entity
+     */
     public Cliente convertClienteToEntity(ClienteRequest request){
         return modelMapper.map(request, Cliente.class);
     }
 
+    /**
+     * @param cliente objeto cliente de tipo Cliente
+     * @return El cliente como Respuesta
+     */
     public ClienteResponse convertClienteToResponse(Cliente cliente){
         return modelMapper.map(cliente, ClienteResponse.class);
     }
 
+    /**
+     * @param clientes Lista de objetos clientes de tipo Cliente
+     * @return La lista de clientes como Respuesta
+     */
     public List<ClienteResponse> convertClienteToResponse(List<Cliente> clientes) {
         return clientes.stream().map(cliente -> modelMapper.map(cliente, ClienteResponse.class))
                 .collect(Collectors.toList());

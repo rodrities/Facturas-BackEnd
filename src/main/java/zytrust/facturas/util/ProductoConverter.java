@@ -31,14 +31,26 @@ public class ProductoConverter {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * @param request El objeto producto de tipo Request
+     * @return El producto como entity
+     */
     public Producto convertProductoToEntity(ProductoRequest request){
         return modelMapper.map(request, Producto.class);
     }
 
+    /**
+     * @param producto objeto producto de tipo Producto
+     * @return El producto como Respuesta
+     */
     public ProductoResponse convertProductoToResponse(Producto producto){
         return modelMapper.map(producto, ProductoResponse.class);
     }
 
+    /**
+     * @param productos Lista de objetos producto de tipo Producto
+     * @return La lista de productos como Respuesta
+     */
     public List<ProductoResponse> convertProductoToResponse(List<Producto> productos) {
         return productos.stream().map(producto -> modelMapper.map(producto, ProductoResponse.class))
                 .collect(Collectors.toList());

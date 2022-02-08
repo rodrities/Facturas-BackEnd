@@ -20,18 +20,24 @@ import lombok.Data;
 @Data
 public class ClienteResponse {
 
-    /* Atributos de respuesta al buscar un cliente */
+    /** Identificador del Cliente de respuesta*/
     private String id;
 
+    /** Nombre del Cliente de respuesta*/
     private String nombre;
 
+    /** Apellido del Cliente de respuesta*/
     private String apellido;
 
+    /** Direccion del Cliente de respuesta*/
     private String direccion;
 
+    /** Telefono del Cliente de respuesta*/
     private String telefono;
 
+    /** Tipo de documento del Cliente de respuesta*/
     private String tipoDocumento;
 
+    /** Numero de documento del Cliente de respuesta*/
     private String numDocumento;
 }

@@ -30,18 +30,34 @@ public class FacturaConverter {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * @param request El objeto factura de tipo Request
+     * @return La factura como entity
+     */
     public Factura convertFacturaToEntity(FacturaRequest request){
         return modelMapper.map(request, Factura.class);
     }
 
+    /**
+     * @param factura objeto factura de tipo Factura
+     * @return El factura como Respuesta
+     */
     public FacturaResponse convertFacturaToResponse(Factura factura){
         return modelMapper.map(factura, FacturaResponse.class);
     }
 
+    /**
+     * @param factura objeto factura de tipo Factura
+     * @return El factura con detalles como Respuesta
+     */
     public FacturaDetailsResponse convertFacturaDetailsToResponse(Factura factura){
         return modelMapper.map(factura, FacturaDetailsResponse.class);
     }
 
+    /**
+     * @param facturas Lista de objetos factura de tipo Factura
+     * @return La lista de facturas como Respuesta
+     */
     public List<FacturaResponse> convertFacturaToResponse(List<Factura> facturas) {
         return facturas.stream().map(factura -> modelMapper.map(factura, FacturaResponse.class))
                 .collect(Collectors.toList());
