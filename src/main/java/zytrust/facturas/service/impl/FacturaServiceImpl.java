@@ -9,7 +9,8 @@ package zytrust.facturas.service.impl;
  * expresa de ZyTrust SA.
  */
 /**
- * Esta interfaz representa la implementacion del servicio de Factura que extiende de CrudServiceImpl .
+ * Esta interfaz representa la implementacion del servicio de Factura
+ * que extiende de CrudServiceImpl .
  * @author Rodrigo Ticona
  * @version 1.0.0, 04/02/2022
  */
@@ -27,7 +28,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Service
-public class FacturaServiceImpl extends CrudServiceImpl<Factura, String> implements FacturaService {
+public class FacturaServiceImpl extends CrudServiceImpl<Factura, String>
+        implements FacturaService {
 
     @Autowired
     private FacturaRepository facturaRepository;
@@ -50,7 +52,8 @@ public class FacturaServiceImpl extends CrudServiceImpl<Factura, String> impleme
 
         t.setSubtotal(new BigDecimal("0.00"));
         for (ProductoFactura producto: t.getProductos()) {
-            t.setSubtotal(t.getSubtotal().add(producto.getProducto().getPrecio().multiply(new BigDecimal(producto.getCantidad()))));
+            t.setSubtotal(t.getSubtotal().add(producto.getProducto().getPrecio()
+                    .multiply(new BigDecimal(producto.getCantidad()))));
         }
 
         // Se agregan los datos que no son requeridos ingresar por el cliente

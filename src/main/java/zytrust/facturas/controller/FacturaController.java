@@ -95,23 +95,29 @@ public class FacturaController {
             @Valid @PathVariable(name = "clienteId")
                     String clienteId) throws Exception{
 
-        Cliente cliente; // se crea el cliente de la factura
+        // se crea el cliente de la factura
+        Cliente cliente;
         var tem = new Factura();  // se crea auxiliar de la factura
-        List<ProductoFactura> productos = new ArrayList<>(); // se crea lista de productos
+        // se crea lista de productos
+        List<ProductoFactura> productos = new ArrayList<>();
 
         cliente = clienteService.getById(clienteId).orElseThrow(
-                () -> new ResourceNotFoundException("Cliente no encontrado"));  // se instancia el cliente de la factura
+                // se instancia el cliente de la factura
+                () -> new ResourceNotFoundException("Cliente no encontrado"));
 
-        tem= converter.convertFacturaToEntity(request); // se instancia auxiliar de la factura
+        // se instancia auxiliar de la factura
+        tem= converter.convertFacturaToEntity(request);
 
-        for (ProductoFactura producto: request.getProductos()) {  // bucle para agregar todos los productos
+        // bucle para agregar todos los productos
+        for (ProductoFactura producto: request.getProductos()) {
             // Buscar todos los productos requeridos
             var productoTem = (
                     productoService.getById(producto.getId()).orElseThrow(
                     () -> new ResourceNotFoundException(
                             "Producto no encontrado")));
 
-            var prodFacTem = new ProductoFactura(); // Crear un nuevo ProductoFactura
+            // Crear un nuevo ProductoFactura
+            var prodFacTem = new ProductoFactura();
 
             prodFacTem.setCantidad(producto.getCantidad());
             prodFacTem.setProducto(productoTem);

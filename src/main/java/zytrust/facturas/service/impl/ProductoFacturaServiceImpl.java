@@ -9,7 +9,8 @@ package zytrust.facturas.service.impl;
  * expresa de ZyTrust SA.
  */
 /**
- * Esta interfaz representa la implementacion del servicio de ProductoFactura que extiende de CrudServiceImpl .
+ * Esta interfaz representa la implementacion del servicio de ProductoFactura
+ * que extiende de CrudServiceImpl .
  * @author Rodrigo Ticona
  * @version 1.0.0, 04/02/2022
  */
@@ -21,7 +22,8 @@ import zytrust.facturas.repository.ProductoFacturaRepository;
 import zytrust.facturas.service.ProductoFacturaService;
 
 @Service
-public class ProductoFacturaServiceImpl extends CrudServiceImpl<ProductoFactura, String>
+public class ProductoFacturaServiceImpl extends
+        CrudServiceImpl<ProductoFactura, String>
         implements ProductoFacturaService {
 
     @Autowired

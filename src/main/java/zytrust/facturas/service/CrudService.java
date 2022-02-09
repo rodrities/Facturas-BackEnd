@@ -9,7 +9,7 @@ package zytrust.facturas.service;
  * expresa de ZyTrust SA.
  */
 /**
- * Esta interfaz representa el layout de las que los demas serviocios extenderan.
+ * Esta interfaz representa el layout de las que los demas serviocios extenderan
  * @author Rodrigo Ticona
  * @version 1.0.0, 04/02/2022
  */
