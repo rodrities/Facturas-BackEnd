@@ -14,7 +14,30 @@ package zytrust.facturas.service;
  * @author Rodrigo Ticona
  * @version 1.0.0, 04/02/2022
  */
+import zytrust.facturas.dto.*;
+import zytrust.facturas.dto.dto.ClienteDTO;
 import zytrust.facturas.model.Cliente;
 
-public interface ClienteService extends CrudService<Cliente, String>{
+import java.util.List;
+
+public interface ClienteService{
+
+    Cliente create (ClienteRequest clienteRequest) throws Exception;
+
+
+    Cliente update (Cliente cliente) throws Exception;
+
+
+    List<ClienteResponse> getAll();
+
+
+    ClienteResponse getById(String id);
+
+    void delete(String id) throws Exception;
+
+    List<ClienteDTO> getAllDTO();
+
+
+    ClienteResponse getByIdDTO(String id);
+
 }

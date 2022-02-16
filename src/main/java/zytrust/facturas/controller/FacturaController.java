@@ -14,6 +14,7 @@ package zytrust.facturas.controller;
  * @author Rodrigo Ticona
  * @version 1.0.0, 04/02/2022
  */
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +57,8 @@ public class FacturaController {
     @Autowired
     private FacturaConverter converter;
 
+    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(FacturaController.class);
+
 
     /**
      * @return      el objeto factura con el status Http200
@@ -63,9 +66,10 @@ public class FacturaController {
      * */
     @GetMapping
     public ResponseEntity<List<FacturaResponse>> getAll() throws Exception{
-        var facturas = facturaService.getAll();
-        return new ResponseEntity<>(
-                converter.convertFacturaToResponse(facturas), HttpStatus.OK);
+
+        logger.info("Buscando todas las facturas");
+        return new ResponseEntity<>(facturaService.getAll(), HttpStatus.OK);
+
     }
 
     /**
@@ -76,27 +80,43 @@ public class FacturaController {
     @GetMapping("/{id}")
     public ResponseEntity<FacturaDetailsResponse> getById(
             @Valid @PathVariable(name = "id") String id) throws Exception{
-        Factura factura;
-        factura= facturaService.getById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Cliente no encontrado"));
-        return new ResponseEntity<>(
-                converter.convertFacturaDetailsToResponse(
-                        factura), HttpStatus.OK);
+
+        logger.info("Buscando la factura con el siguiente id {}", id);
+        return new ResponseEntity<>(facturaService.getById(id), HttpStatus.OK);
+
     }
 
-    /**@param  request  un obejto json con los parametros de una factura
+    @PostMapping
+    public void crearFactura(
+            @Valid @RequestBody FacturaRequest request) throws Exception {
+
+        logger.info("Creando la factura con los siguientes datos {}", request.toString());
+        facturaService.create(request);
+
+    }
+
+    @PutMapping("/{id}/status/{status}")
+    public void cambiarStatus(@Valid @PathVariable(name = "id") String id,
+                              @Valid @PathVariable(name = "status") String status
+    ) throws Exception{
+        logger.info("Cambiando status de la factura con el id {}", id);
+        facturaService.cambiarStatus(id, status);
+    }
+
+
+   /* /**@param  request  un obejto json con los parametros de una factura
     * @param   clienteId que se extrae del path
     * @return      el objeto factura con el status Http200
      *@throws Exception Excepción durante el proceso de creacion
     * */
-    @PostMapping("/cliente/{clienteId}")
+    /*@PostMapping("/cliente/{clienteId}")
     public ResponseEntity<FacturaResponse> crearProducto(
             @Valid @RequestBody FacturaRequest request,
             @Valid @PathVariable(name = "clienteId")
                     String clienteId) throws Exception{
 
         // se crea el cliente de la factura
-        Cliente cliente;
+        /*Cliente cliente;
         var tem = new Factura();  // se crea auxiliar de la factura
         // se crea lista de productos
         List<ProductoFactura> productos = new ArrayList<>();
@@ -144,15 +164,16 @@ public class FacturaController {
 
         return new ResponseEntity<>(
                 converter.convertFacturaToResponse(
-                        factura), HttpStatus.ACCEPTED);
-    }
+                        factura), HttpStatus.ACCEPTED);*/
+    //}
 
-    /**@param  id  El identificador de la fatura a editar
+
+    /*/**@param  id  El identificador de la fatura a editar
      * @param  idProducto  El identificador del producto a agregar
      * @return      el objeto factura con el status Http200
      * @throws Exception Excepción durante el proceso de actualizacion
      * */
-    @PutMapping("/{id}/producto/{idProducto}")
+    /*@PutMapping("/{id}/producto/{idProducto}")
     public ResponseEntity<FacturaResponse> agregarProducto(
             @Valid @PathVariable(name = "id") String id,
             @Valid @PathVariable(name = "idProducto") String idProducto
@@ -196,16 +217,16 @@ public class FacturaController {
 
         return new ResponseEntity<>(
                 converter.convertFacturaToResponse(factura), HttpStatus.OK);
-    }
+    }*/
 
 
 
-    /** @param   id     el identificador de la facrtura
+    /*/** @param   id     el identificador de la facrtura
      * @param  status el nuevo status de la factura
      * @return        el objeto factura con el status Http200
      * @throws Exception Excepción durante el proceso de actualizcion
      * */
-    @PutMapping("/{id}/status/{status}")
+    /*@PutMapping("/{id}/status/{status}")
     public ResponseEntity<FacturaResponse> cambiarStatus(
             @Valid @PathVariable(name = "id") String id,
             @Valid @PathVariable(name = "status") String status
@@ -222,10 +243,10 @@ public class FacturaController {
             }
         }*/
 
-        facturaService.update(factura);
+        /*facturaService.update(factura);
 
         return new ResponseEntity<>(
                 converter.convertFacturaToResponse(factura), HttpStatus.OK);
-    }
+    }*/
 
 }

@@ -16,6 +16,7 @@ package zytrust.facturas.dto;
  */
 
 import lombok.Data;
+import zytrust.facturas.model.Cliente;
 
 @Data
 public class ClienteResponse {
@@ -40,4 +41,5 @@ public class ClienteResponse {
 
     /** Numero de documento del Cliente de respuesta*/
     private String numDocumento;
+
 }

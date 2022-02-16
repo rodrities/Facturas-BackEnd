@@ -15,10 +15,16 @@ package zytrust.facturas.repository;
  * @author Rodrigo Ticona
  * @version 1.0.0, 04/02/2022
  */
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import zytrust.facturas.dto.FacturaResponse;
 import zytrust.facturas.model.Factura;
 
+import java.util.List;
+
 @Repository
-public interface FacturaRepository extends GenericRepository<Factura, String> {
+public interface FacturaRepository extends JpaRepository<Factura, String> {
+
 
 }

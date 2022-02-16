@@ -25,6 +25,8 @@ import java.util.List;
 @Data
 public class FacturaRequest {
 
+    private String clienteId;
+
     /** Lista de produtos requeridos para la creacion de factura*/
     private List<ProductoFactura> productos;
 

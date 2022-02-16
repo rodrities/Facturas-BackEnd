@@ -17,10 +17,7 @@ package zytrust.facturas.model;
  * @version 1.0.0, 04/02/2022
  */
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -33,7 +30,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 public class Factura {
 
     /**  Identificador de la factura */
@@ -53,7 +50,7 @@ public class Factura {
 
     /** Total de la factura */
     @Column(name = "FAC_TOTAL")
-    private BigDecimal total ;
+    private BigDecimal total = new BigDecimal("0.00");
 
     /** Subtotal de la factura */
     @Column(name = "FAC_SUBTOTAL")
@@ -61,7 +58,7 @@ public class Factura {
 
     /** Impuesto de la factura */
     @Column(name = "FAC_IMPUESTO")
-    private BigDecimal impuesto;
+    private BigDecimal impuesto = new BigDecimal("0.00");
 
     /** Estatus de la factura */
     @Column(name = "FAC_ESTATUS")
